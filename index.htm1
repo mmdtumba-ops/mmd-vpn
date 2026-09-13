@@ -1,0 +1,240 @@
+.qr {
+      width: 170px;
+      height: 170px;
+      margin: 15px auto;
+      background: white;
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #111;
+      font-weight: bold;
+      font-size: 12px;
+    }
+
+    .qr-section p {
+      color: #71879c;
+      font-size: 11px;
+      line-height: 1.8;
+    }
+
+    /* Buttons */
+
+    .buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .btn {
+      padding: 14px;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 15px;
+      font-size: 13px;
+      color: white;
+      background: #0b131e;
+      border: 1px solid #1b334c;
+      transition: .2s;
+    }
+
+    .btn:hover {
+      background: #0d1d2e;
+      border-color: #087eff;
+    }
+
+    .btn.primary {
+      background: linear-gradient(135deg, #007cff, #0050b7);
+      border: none;
+    }
+
+    /* Footer */
+
+    footer {
+      text-align: center;
+      color: #52677b;
+      font-size: 10px;
+      margin-top: 25px;
+      padding-bottom: 10px;
+    }
+
+    footer b {
+      color: #148cff;
+    }
+
+    @media(max-width: 380px) {
+      .info {
+        grid-template-columns: 1fr;
+      }
+
+      .buttons {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!-- Header -->
+
+    <div class="header">
+
+      <div class="logo">
+        MMD
+      </div>
+
+      <h1>MMD VPN</h1>
+      <p>پنل مدیریت اشتراک</p>
+
+    </div>
+
+
+    <!-- Subscription -->
+
+    <div class="card">
+
+      <div class="card-title">
+
+        <h2>اطلاعات اشتراک</h2>
+
+        <span class="active">
+          فعال
+        </span>
+
+      </div>
+
+
+      <div class="info">
+
+        <div class="info-box">
+          <span>نام کاربر</span>
+          <strong>MMD User</strong>
+        </div>
+
+        <div class="info-box">
+          <span>نوع سرویس</span>
+          <strong>نامحدود</strong>
+        </div>
+
+        <div class="info-box">
+          <span>تاریخ شروع</span>
+          <strong>1405/06/20</strong>
+        </div>
+
+        <div class="info-box">
+          <span>تاریخ انقضا</span>
+          <strong>1405/07/20</strong>
+        </div>
+
+      </div>
+
+
+      <!-- Usage -->
+
+      <div class="usage">
+
+        <div class="usage-top">
+          <span>میزان مصرف</span>
+          <span>36%</span>
+        </div>
+
+        <div class="progress">
+          <div class="progress-bar"></div>
+        </div>
+
+      </div>
+
+
+      <!-- Link -->
+
+      <div class="link-box">
+
+        <input
+          id="subscriptionLink"
+          type="text"
+          readonly
+          value="https://example.com/sub/MMD123456"
+        >
+
+        <button onclick="copyLink()">
+          کپی
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- QR -->
+
+    <div class="card qr-section">
+
+      <div class="card-title">
+        <h2>QR اشتراک</h2>
+      </div>
+
+      <div class="qr">
+        QR CODE
+      </div>
+
+      <p>
+        برای اتصال سریع، QR کد را با برنامه موردنظر اسکن کنید.
+      </p>
+
+    </div>
+
+
+    <!-- Buttons -->
+
+    <div class="card">
+
+      <div class="buttons">
+
+        <a href="#" class="btn primary">
+          آموزش اتصال
+        </a>
+
+        <a href="#" class="btn">
+          پشتیبانی
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <footer>
+      Powered by <b>MMD VPN</b>
+    </footer>
+
+  </div>
+
+
+  <script>
+
+    function copyLink() {
+
+      const input =
+        document.getElementById("subscriptionLink");
+
+      navigator.clipboard.writeText(input.value);
+
+      const button =
+        document.querySelector(".link-box button");
+
+      button.innerText = "کپی شد ✓";
+
+      setTimeout(() => {
+        button.innerText = "کپی";
+      }, 1500);
+
+    }
+
+  </script>
+
+</body>
+</html>
