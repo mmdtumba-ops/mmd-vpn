@@ -1,34 +1,366 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MMD VPN</title>
-<style> * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, Tahoma, sans-serif; } body { min-height: 100vh; background: #05070b; color: white; padding: 20px; } .container { max-width: 500px; margin: auto; } .header { text-align: center; margin-bottom: 25px; } .logo { width: 75px; height: 75px; margin: auto; border-radius: 20px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #008cff, #003f91); font-size: 24px; font-weight: bold; } .header h1 { margin-top: 15px; font-size: 26px; } .header p { margin-top: 8px; color: #8b9bae; } .card { background: #0b1119; border: 1px solid #17324d; border-radius: 20px; padding: 18px; margin-bottom: 15px; } .card-title { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; } .active { background: #062a4d; color: #42aaff; padding: 6px 12px; border-radius: 20px; font-size: 12px; } .info { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; } .info-box { background: #070b10; border: 1px solid #172433; border-radius: 15px; padding: 14px; } .info-box span { display: block; color: #8092a5; font-size: 11px; margin-bottom: 8px; } .info-box strong { font-size: 14px; } .usage { margin-top: 20px; } .usage-top { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 12px; } .progress { height: 10px; background: #17202b; border-radius: 20px; overflow: hidden; } .progress-bar { width: 36%; height: 100%; background: linear-gradient(90deg, #006cff, #00aaff); } .link-box { display: flex; gap: 8px; margin-top: 20px; } .link-box input { width: 100%; min-width: 0; background: #070b10; border: 1px solid #1b3045; border-radius: 12px; color: white; padding: 12px; direction: ltr; } button { border: none; border-radius: 12px; padding: 0 16px; color: white; background: #006cff; font-weight: bold; } .qr-section { text-align: center; } .qr { width: 160px; height: 160px; background: white; color: black; margin: 15px auto; border-radius: 15px; display: flex; align-items: center; justify-content: center; font-weight: bold; } .buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; } .btn { text-decoration: none; text-align: center; padding: 14px; border-radius: 14px; background: #111c28; border: 1px solid #1d344c; color: white; } .primary { background: #006cff; } footer { text-align: center; color: #617386; font-size: 11px; margin-top: 25px; } footer b { color: #0099ff; } @media (max-width: 400px) { .info { grid-template-columns: 1fr; } .buttons { grid-template-columns: 1fr; } } </style>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Tahoma,Arial,sans-serif;
+}
+
+body{
+  min-height:100vh;
+  background:#05070b;
+  color:#fff;
+  padding:25px 15px;
+}
+
+.container{
+  max-width:500px;
+  margin:auto;
+}
+
+.header{
+  text-align:center;
+  margin-bottom:25px;
+}
+
+.logo{
+  width:75px;
+  height:75px;
+  margin:auto;
+  border-radius:22px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(135deg,#008cff,#004fa8);
+  font-size:22px;
+  font-weight:bold;
+  box-shadow:0 0 25px rgba(0,140,255,.4);
+}
+
+.header h1{
+  margin-top:15px;
+  font-size:26px;
+}
+
+.header p{
+  margin-top:8px;
+  color:#8ca1b5;
+  font-size:13px;
+}
+
+.card{
+  background:#0b111a;
+  border:1px solid #16314a;
+  border-radius:22px;
+  padding:20px;
+  margin-bottom:15px;
+}
+
+.card-title{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:18px;
+}
+
+.card-title h2{
+  font-size:16px;
+}
+
+.active{
+  background:rgba(0,140,255,.15);
+  color:#4cb5ff;
+  border:1px solid rgba(0,140,255,.3);
+  padding:6px 12px;
+  border-radius:20px;
+  font-size:11px;
+}
+
+.info{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.info-box{
+  background:#070c12;
+  border:1px solid #172737;
+  border-radius:15px;
+  padding:14px;
+}
+
+.info-box span{
+  display:block;
+  color:#72879b;
+  font-size:11px;
+  margin-bottom:7px;
+}
+
+.info-box strong{
+  font-size:14px;
+}
+
+.usage{
+  margin-top:20px;
+}
+
+.usage-top{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:10px;
+  font-size:12px;
+}
+
+.usage-top span:first-child{
+  color:#8ca0b4;
+}
+
+.usage-top span:last-child{
+  color:#3faeff;
+}
+
+.progress{
+  height:10px;
+  background:#17202b;
+  border-radius:20px;
+  overflow:hidden;
+}
+
+.progress-bar{
+  width:36%;
+  height:100%;
+  background:linear-gradient(90deg,#0066ff,#00aaff);
+  border-radius:20px;
+}
+
+.link-box{
+  display:flex;
+  gap:8px;
+  margin-top:18px;
+}
+
+.link-box input{
+  width:100%;
+  min-width:0;
+  background:#070c12;
+  border:1px solid #1a2e42;
+  color:#a9bfd3;
+  border-radius:12px;
+  padding:12px;
+  font-size:11px;
+  direction:ltr;
+  outline:none;
+}
+
+button{
+  border:none;
+  color:white;
+  background:linear-gradient(135deg,#008cff,#0050b5);
+  border-radius:12px;
+  padding:0 17px;
+  cursor:pointer;
+}
+
+.qr-section{
+  text-align:center;
+}
+
+.qr{
+  width:170px;
+  height:170px;
+  margin:15px auto;
+  background:white;
+  color:black;
+  border-radius:15px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:bold;
+}
+
+.qr-section p{
+  color:#71879c;
+  font-size:11px;
+  line-height:1.8;
+}
+
+.buttons{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.btn{
+  padding:14px;
+  text-align:center;
+  text-decoration:none;
+  color:white;
+  background:#0d1722;
+  border:1px solid #1b334c;
+  border-radius:14px;
+  font-size:13px;
+}
+
+.primary{
+  background:linear-gradient(135deg,#007cff,#0050b7);
+  border:none;
+}
+
+footer{
+  text-align:center;
+  color:#52677b;
+  font-size:11px;
+  margin-top:20px;
+}
+
+footer b{
+  color:#168cff;
+}
+
+@media(max-width:380px){
+  .info{
+    grid-template-columns:1fr;
+  }
+
+  .buttons{
+    grid-template-columns:1fr;
+  }
+}
+</style>
 </head>
+
 <body>
+
 <div class="container">
-<div class="header"> <div class="logo">MMD</div> <h1>MMD VPN</h1> <p>پنل مدیریت اشتراک</p> </div>
-<div class="card">
-<div class="card-title"> <h2>اطلاعات اشتراک</h2> <span class="active">فعال</span> </div>
-<div class="info">
-<div class="info-box"> <span>نام کاربر</span> <strong>MMD User</strong> </div>
-<div class="info-box"> <span>نوع سرویس</span> <strong>نامحدود</strong> </div>
-<div class="info-box"> <span>تاریخ شروع</span> <strong>1405/06/20</strong> </div>
-<div class="info-box"> <span>تاریخ انقضا</span> <strong>1405/07/20</strong> </div>
+
+  <div class="header">
+    <div class="logo">MMD</div>
+    <h1>MMD VPN</h1>
+    <p>پنل مدیریت اشتراک</p>
+  </div>
+
+  <div class="card">
+
+    <div class="card-title">
+      <h2>اطلاعات اشتراک</h2>
+      <span class="active">فعال</span>
+    </div>
+
+    <div class="info">
+
+      <div class="info-box">
+        <span>نام کاربر</span>
+        <strong>MMD User</strong>
+      </div>
+
+      <div class="info-box">
+        <span>نوع سرویس</span>
+        <strong>نامحدود</strong>
+      </div>
+
+      <div class="info-box">
+        <span>تاریخ شروع</span>
+        <strong>1405/06/20</strong>
+      </div>
+
+      <div class="info-box">
+        <span>تاریخ انقضا</span>
+        <strong>1405/07/20</strong>
+      </div>
+
+    </div><div class="usage">
+
+      <div class="usage-top">
+        <span>میزان مصرف</span>
+        <span>36%</span>
+      </div>
+
+      <div class="progress">
+        <div class="progress-bar"></div>
+      </div>
+
+    </div>
+
+    <div class="link-box">
+
+      <input
+        id="subscriptionLink"
+        type="text"
+        readonly
+        value="https://example.com/sub/MMD123456">
+
+      <button onclick="copyLink()">کپی</button>
+
+    </div>
+
+  </div>
+
+  <div class="card qr-section">
+
+    <div class="card-title">
+      <h2>QR اشتراک</h2>
+    </div>
+
+    <div class="qr">
+      QR CODE
+    </div>
+
+    <p>
+      برای اتصال سریع، QR کد را اسکن کنید.
+    </p>
+
+  </div>
+
+  <div class="card">
+
+    <div class="buttons">
+
+      <a href="#" class="btn primary">
+        آموزش اتصال
+      </a>
+
+      <a href="#" class="btn">
+        پشتیبانی
+      </a>
+
+    </div>
+
+  </div>
+
+  <footer>
+    Powered by <b>MMD VPN</b>
+  </footer>
+
 </div>
-<div class="usage">
-<div class="usage-top"> <span>میزان مصرف</span> <span>36%</span> </div>
-<div class="progress"> <div class="progress-bar"></div> </div>
-</div>
-<div class="link-box">
-<input>
-id="subscriptionLink"
-type="text"
-readonly
-value="https://example.com/sub/MMD123456"
-<button onclick="copyLink()">کپی</button>
-</div>
-</div>
-<div class="card qr-section">
-<h2>QR اشتراک</h2>
-<div class="qr"> QR CODE </div>
-<p>برای اتصال سریع، QR کد را اسکن کنید.</p>
-</div>
+
+<script>
+
+function copyLink(){
+
+  const input = document.getElementById("subscriptionLink");
+
+  navigator.clipboard.writeText(input.value);
+
+  const button = document.querySelector(".link-box button");
+
+  button.innerText = "کپی شد ✓";
+
+  setTimeout(function(){
+
+    button.innerText = "کپی";
+
+  },1500);
+
+}
+
+</script>
+
+</body>
+</html>
